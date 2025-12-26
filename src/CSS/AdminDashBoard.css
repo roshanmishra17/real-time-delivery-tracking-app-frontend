@@ -1,0 +1,160 @@
+.admin-dash-container {
+    min-height: 100vh;
+    background:rgb(12, 12, 13) ;
+    padding: 24px 36px;
+    color: #e5e7eb;
+}
+
+.dash-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: rgb(255, 255, 255);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.stat-card {
+    background: rgb(30, 30, 30);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgb(42, 42, 42);
+}
+
+.stat-card h3 {
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0;
+    color: white;
+}
+
+.stat-card p {
+    margin-top: 6px;
+    font-size: 14px;
+    color: rgb(156, 163, 175);
+}
+
+.stat-card.active h3 {
+    color: rgb(59, 130, 246);
+}
+
+.stat-card.delivered h3 {   
+    color: rgb(16, 185, 129);
+}
+
+.stat-card.agents h3 {
+    color: rgb(245, 158, 11);
+}
+
+.quick-actions {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 30px;
+}
+
+.quick-actions button {
+    height: 44px;
+    padding: 0 22px;
+    background: rgb(37, 99, 235);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.quick-actions button:last-child {
+    background: rgb(39, 39, 42);
+    border: 1px solid rgb(63, 63, 70);
+}
+
+.quick-actions button:hover {
+    background: rgb(29, 78, 216);
+}
+
+.quick-actions button:last-child:hover {
+    background: rgb(63, 63, 70);
+}
+
+.recent-orders {
+    background: rgb(30, 30, 30);
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid rgb(42, 42, 42);
+}
+
+.recent-orders h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: #ffffff;
+}
+
+.recent-card {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgb(24, 24, 24);
+    margin-bottom: 10px;
+}
+
+.recent-card span {
+    font-size: 14px;
+}
+
+.status {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.status-pending {
+    background: rgb(59, 130, 246);
+    color: white;
+}
+
+.status-in_transit {
+  background: rgb(245, 158, 11);
+  color: rgb(17, 24, 39);
+}
+
+.status-delivered {
+    background: rgb(16, 185, 129);
+    color: rgb(5, 46, 26);
+}
+
+.recent-orders p {
+    font-size: 14px;
+    color: rgb(156, 163, 175);
+}
+.view{
+    background: rgb(39, 39, 42);
+    color: rgb(229, 231, 235);
+    border: 1px solid rgb(63, 63, 70);
+}
+
+.view:hover {
+    background: rgb(63, 63, 70);
+}
+@media (max-width: 600px) {
+    .quick-actions {
+        flex-direction: column;
+    }
+
+    .recent-card {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}

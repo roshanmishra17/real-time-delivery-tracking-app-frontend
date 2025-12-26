@@ -1,0 +1,123 @@
+.agent-container {
+    min-height: 100vh;
+    background:rgb(12, 12, 13) ;
+    padding-bottom: 40px;
+}
+
+.agent-header {
+    background: transparent;
+    padding: 20px 40px;
+    border-bottom: 1px solid black;
+    box-shadow: 0 8px 20px rgba(38, 36, 36, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.agent-header h1 {
+    margin: 0;
+    color: rgb(255, 255, 255);
+}
+
+.logout-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    transform: scale(1.03);
+}
+
+.agent-title {
+    margin: 25px;
+    color: rgb(255, 255, 255);
+}
+
+.agent-orders {
+    padding: 0 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 20px;
+}
+
+.agent-order-card {
+    background: rgb(30, 28, 28);
+    padding: 18px;
+    border-radius: 14px;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.12);
+}
+
+.order-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.status-assigned { background: rgb(2, 119, 189); }
+.status-picked { background: rgb(123, 31, 162); }
+.status-in_transit { background: rgb(245, 124, 0); }
+.status-delivered { background: rgb(46, 125, 50); }
+
+.agent-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.agent-actions button {
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.primary {
+    background: rgb(25, 118, 210);
+    color: white;
+}
+
+.primary:hover {
+    background: rgb(17, 91, 164);
+}
+
+.secondary {
+    background: rgb(46, 125, 50);
+    color: rgb(255, 255, 255);
+}
+
+.secondary:hover {
+    background: rgb(28, 90, 33);
+}
+
+.delivered-text {
+    color: rgb(46, 125, 50);
+    font-weight: bold;
+}
+
+.empty-text {
+    text-align: center;
+    color: rgb(208, 201, 201);
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 480px){
+    .agent-orders {
+        padding: 0 15px;
+        grid-template-columns: 1fr;
+    }
+}

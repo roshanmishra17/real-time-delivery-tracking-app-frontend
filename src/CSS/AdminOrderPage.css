@@ -1,0 +1,138 @@
+.admin-orders-container {
+    min-height: 100vh;
+    padding: 24px 40px;
+    background:rgb(12, 12, 13) ;
+    color: rgb(229, 229, 229);
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: white;
+}
+
+.empty-text {
+    color: rgb(156, 163, 175);
+    font-size: 16px;
+}
+
+.orders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.orders-card {
+    background: rgb(30, 30, 30);
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(42, 42, 42);
+    gap: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.orders-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.orders-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.orders-header h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.status {
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.status-pending {
+    background: rgb(59, 130, 246);
+    color: rgb(255, 255, 255);
+}
+
+.status-assigned {
+  background: rgb(245, 158, 11);
+  color: rgb(17, 24, 39);
+}
+
+.status-delivered {
+    background: rgb(16, 185, 129);
+    color: rgb(5, 46, 26);
+}
+
+.orders-info p {
+    font-size: 14px;
+    margin: 6px 0;
+    color: rgb(209, 213, 219);
+}
+
+.orders-info b {
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+}
+
+.orders-action {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.orders-action button {
+    flex: 1;
+    height: 42px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.assign-button {
+    background: rgb(37, 99, 235);
+    color: rgb(255, 255, 255);
+}
+
+.assign-button:hover {
+    background: rgb(29, 78, 216);
+}
+
+.view-button {
+    background: rgb(39, 39, 42);
+    color: rgb(229, 231, 235);
+    border: 1px solid rgb(63, 63, 70);
+}
+
+.view-button:hover {
+    background: rgb(63, 63, 70);
+}
+.assign-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+
+@media (max-width: 480px) {
+    .admin-orders-container {
+        padding: 20px;
+    }
+
+    .page-title {
+        font-size: 22px;
+    }
+}

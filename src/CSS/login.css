@@ -1,0 +1,70 @@
+.login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background:rgb(12, 12, 13) ;
+}
+.login-card{
+    width: 350px;
+    background: rgb(30, 28, 28);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(39, 38, 38, 0.12);
+    text-align: center;
+}
+.login-card h1{
+    margin-bottom: 15px;
+    color: rgb(255, 244, 244);
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+form input{
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid rgb(204, 204, 204);
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+form input:focus{
+    border-color:rgb(25, 118, 210) ;
+    outline: none;
+}
+.submit-Btn{
+    padding: 10px;
+    border: none;
+    background:rgb(45, 49, 56) ;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.submit-Btn:hover{
+    background:rgb(16, 17, 20) ;
+}
+.error-msg{
+    color: red;
+    background: #ffe6e6;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+.signup-text {
+  font-size: 14px;
+  margin-top: 15px;
+  color: rgb(255, 255, 255);
+}
+.signup-text span {
+  color: #1976d2;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.signup-text span:hover {
+  text-decoration: underline;
+}

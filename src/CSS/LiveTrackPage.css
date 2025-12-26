@@ -1,0 +1,143 @@
+/* ===== PAGE ===== */
+.track-container {
+  min-height: 100vh;
+  background: #0f0f0f;
+  padding: 20px 28px;
+  color: #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ===== HEADER ===== */
+.track-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #161616;
+  border-radius: 14px;
+  padding: 18px 22px;
+  border: 1px solid #262626;
+}
+
+.track-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.track-header span.status {
+  display: inline-block;
+  margin-top: 6px;
+}
+
+/* ===== WS STATUS ===== */
+.ws-status {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  letter-spacing: 1px;
+}
+
+.ws-status.on {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid #10b981;
+}
+
+.ws-status.off {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: 1px solid #ef4444;
+}
+
+/* ===== MAP ===== */
+.map-section {
+  flex: 1;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #262626;
+  background: #111;
+}
+
+/* ===== INFO PANEL ===== */
+.info-panel {
+  background: #161616;
+  border-radius: 14px;
+  padding: 18px 22px;
+  border: 1px solid #262626;
+}
+
+.info-panel h3 {
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.info-panel p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #d1d5db;
+}
+
+.info-panel b {
+  color: #ffffff;
+}
+
+/* ===== CONTROLS ===== */
+.controls {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.controls .primary {
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* ===== STATUS BADGES ===== */
+.status {
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.status-pending {
+  background: #3b82f6;
+  color: #ffffff;
+}
+
+.status-in_transit {
+  background: #f59e0b;
+  color: #111827;
+}
+
+.status-delivered {
+  background: #10b981;
+  color: #052e1a;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .track-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .ws-status {
+    align-self: flex-end;
+  }
+}

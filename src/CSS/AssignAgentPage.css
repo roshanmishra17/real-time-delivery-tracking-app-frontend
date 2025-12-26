@@ -1,0 +1,136 @@
+.assign-container {
+    min-height: 60vh;
+    background:rgb(12, 12, 13) ;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.assign-card {
+    background: rgb(30, 28, 28);
+    width: 520px;
+    padding: 28px;
+    border-radius: 14px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+}
+
+.assign-card h2 {
+    text-align: center;
+    margin-top: 0;
+}
+
+.order-summary {
+  background: rgb(54, 51, 51);
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.order-summary h3 {
+  margin-top: 0;
+  color: #1976d2;  
+}
+
+.agent-list {
+  background: rgb(36, 36, 38);
+  border: 1px solid rgb(30, 41, 59);
+  border-radius: 14px;
+  padding: 24px;
+  margin-top: 24px;
+  color: white;
+}
+
+.agent-list h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.agent-list .empty {
+  color: rgb(148, 163, 184);
+  font-style: italic;
+}
+
+.agent-item {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  background: rgb(46, 46, 48);
+  border: 1px solid rgb(30, 41, 59);
+  border-radius: 10px;
+
+  cursor: pointer;
+  transition: background 0.2s ease, border 0.2s ease, transform 0.15s ease;
+}
+
+.agent-item:hover {
+  background: rgb(42, 42, 46);
+  border-color: rgb(62, 64, 65);
+  transform: translateY(-1px);
+}
+
+.agent-item input[type="radio"] {
+    accent-color: rgb(192, 194, 195);
+    margin-top : 0px;
+    cursor: pointer;
+}
+
+.agent-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 280px;
+}
+
+.agent-name {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgb(239, 241, 244);
+}
+
+.agent-email {
+  font-size: 0.8rem;
+  color: rgb(148, 163, 184);
+}
+
+.agent-item input[type="radio"]:checked {
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+}
+
+.assign-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background: rgb(25, 118, 210);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.assign-btn:hover {
+  background: rgb(17, 91, 164);
+}
+
+.error-msg {
+  background: rgb(255, 227, 227);
+  color: rgb(196, 0, 0);
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .assign-card {
+    width: 100%;
+  }
+}
