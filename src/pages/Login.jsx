@@ -34,7 +34,6 @@ export default function Login() {
 
         localStorage.setItem("token", token);
         localStorage.setItem("role",role)
-        // console.log("Stored token:", token);
 
         console.log(role)
 
@@ -48,8 +47,11 @@ export default function Login() {
 
 
       } catch (err) {
-        console.error("Login failed:", err);
-        setError(err)
+        if (err.response && err.response.data) {
+          setError(err.response.data.detail || "Invalid email or password");
+        } else {
+          setError("Login failed. Please try again.");
+        }
       }
   }
 
@@ -65,7 +67,7 @@ export default function Login() {
               type="email"
               placeholder="Email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}r
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
 

@@ -28,11 +28,14 @@ export default function SignUp(){
 
         try{
             await API.post("/users", form);
-            alert("Account created! Now login.");
             setSuccess("Account created successfully!");
             setTimeout(() => navigate("/login"), 1200);            
         }catch(err){
-            setError("Signup failed - Email may already exist")
+            if (err.response && err.response.data) {
+                setError(err.response.data.detail || "Signup failed");
+            } else {
+                setError("Signup failed. Please try again.");
+            }
         }
     }
 
