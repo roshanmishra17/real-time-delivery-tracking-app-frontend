@@ -33,7 +33,11 @@ export default function CreateOrder(){
             })
             navigate('/dashboard')
         }catch(err){
-            setError("Failed to create order. Check input values.");
+            if (err.response && err.response.data){
+                setError(err.response.data.detail || "Failed to create order");
+            }else{
+                setError("Failed to create order. Check input values.");
+            }
         }
     }
 

@@ -8,6 +8,7 @@ export default function CustomerDashboard() {
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const[error,setError] = useState("")
 
   useEffect(() => {
     async function loadOrders() {
@@ -17,7 +18,11 @@ export default function CustomerDashboard() {
         });
         setOrders(res.data);
       } catch (err) {
-        console.error("Error loading orders", err);
+        if (err.response && err.response.data){
+          setError(err.response.data.detail || "Error in loading orders");
+        }else{
+          setError("Error in loading orders", err);
+        }
       }
     }
     loadOrders();
@@ -30,6 +35,7 @@ export default function CustomerDashboard() {
       <div className="customer-container">
         <div className="dashboard-header">
           <h2>My Orders</h2>
+          {error && <p className="error-msg">{error}</p>}
           <button
             className="create-btn"
             onClick={() => navigate("/create-order")}
