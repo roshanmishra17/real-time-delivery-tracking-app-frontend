@@ -34,8 +34,14 @@ export default function OrderDetailsPage(){
         loadData()
     },[order_id,navigate])
 
-    if (!order) return <h2>Loading order details...</h2>;
-
+    if (!order) {
+      return (
+        <div className="center-text-loader">
+          <h2>Loading order details…</h2>
+          <p>Please wait a moment</p>
+        </div>
+      );
+    }
     return(
         <>
             <NavBar/>

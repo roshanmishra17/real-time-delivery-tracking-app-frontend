@@ -35,7 +35,14 @@ export default function AgentOrderDetailsPage () {
         loadOrder()
     },[order_id,token])
 
-    if(!order) return <h2>Loading Order....</h2>
+    if (!order) {
+      return (
+        <div className="center-text-loader">
+          <h2>Loading order…</h2>
+          <p>Please wait a moment</p>
+        </div>
+      );
+    }
     const pickup = {
         lat : order.pickup.lat,
         lng : order.pickup.lng,

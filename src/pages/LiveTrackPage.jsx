@@ -62,8 +62,19 @@ export default function LiveTrackPage() {
     load();
   }, [order_id, token]);
 
-  if (!pickup || !drop) return <h2>Loading map...</h2>;
-  if (!order) return <h2 className="loading">Loading tracking…</h2>;
+    if (!pickup || !drop) return (
+      <div className="center-text-loader">
+        <h2>Loading map...</h2>
+      </div>
+    )
+    if (!order) {
+      return (
+        <div className="center-text-loader">
+          <h2>Loading order…</h2>
+          <p>Please wait a moment</p>
+        </div>
+      );
+    }
 
 
   return (
