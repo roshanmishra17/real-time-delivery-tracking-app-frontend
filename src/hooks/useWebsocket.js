@@ -8,7 +8,7 @@ export default function useOrderTracking(order_id,token){
     useEffect(() => {
         if(!order_id || !token) return
 
-        const wsUrl = `ws://localhost:8000/ws/track/${order_id}?token=${token}`;
+        const wsUrl = `${import.meta.env.VITE_WS_BASE_URL}/ws/track/${order_id}?token=${token}`;
         const ws = new WebSocket(wsUrl);
         wsRef.current = ws;
 
