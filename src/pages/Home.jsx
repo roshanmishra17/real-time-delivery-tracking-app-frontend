@@ -25,7 +25,7 @@ export default function Home(){
                         onClick={() =>
                             navigate(
                             role === "customer"
-                                ? "/orders"
+                                ? "/dashboard"
                                 : role === "agent"
                                 ? "/agent/orders"
                                 : "/admin/dashboard"
