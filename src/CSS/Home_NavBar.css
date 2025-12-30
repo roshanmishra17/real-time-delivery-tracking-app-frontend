@@ -66,10 +66,9 @@
 .logoutBtn {
   padding: 8px 16px;
   border-radius: 6px;
-  border: 1px solid white;
-  background: transparent;
-  color: white;
-  cursor: pointer;
+  background: white;
+  color: black !important;
+  font-weight: 600;
 }
 .createBtn {
   padding: 8px 16px;
