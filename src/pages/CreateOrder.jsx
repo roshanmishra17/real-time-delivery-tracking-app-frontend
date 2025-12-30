@@ -29,7 +29,7 @@ export default function CreateOrder(){
     async function handleSubmit(e) {
         e.preventDefault();
         try{
-            await API.post('/order',form,{
+            await API.post('/order/',form,{
                 headers : {Authorization : `Bearer ${token}`}
             })
             navigate('/dashboard')

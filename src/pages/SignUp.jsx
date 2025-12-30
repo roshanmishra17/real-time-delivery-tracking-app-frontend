@@ -27,8 +27,8 @@ export default function SignUp(){
         }
 
         try{
-            await API.post("/users", form);
-            setSuccess("Account created successfully!");
+            await API.post("/users/", form);
+            setSuccess("Account created successfully! Now Login Again");
             setTimeout(() => navigate("/login"), 1200);            
         }catch(err){
             if (err.response && err.response.data) {
