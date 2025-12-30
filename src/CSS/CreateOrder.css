@@ -11,12 +11,10 @@
 .create-card {
     width: 100%;
     max-width: 520px;
-
     background: rgb(30, 28, 28);
     border: 1px solid #1e293b;
     border-radius: 16px;
     padding: 32px;
-
     color: white;
 }
 
