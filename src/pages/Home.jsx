@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
+import Footer from "./footer";
 export default function Home(){
     const navigate = useNavigate()
     const token = localStorage.getItem("token")
@@ -59,6 +60,7 @@ export default function Home(){
                     </div>
                 </div>
             </section>
+            <Footer/>
         </>
     )
 }

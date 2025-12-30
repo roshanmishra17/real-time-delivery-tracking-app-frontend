@@ -1,0 +1,32 @@
+.app-footer {
+  background: #0f172a;
+  color: #cbd5f5;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.footer-meta {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-meta a {
+  color: #93c5fd;
+  text-decoration: none;
+}
+
+.footer-meta a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .app-footer {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+}

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import API from "../api/axios";
 import NavBar from "./NavBar";
 import "../CSS/OrderDetailsPage.css"
+import Footer from "./footer";
 
 export default function OrderDetailsPage(){
     const navigate = useNavigate()
@@ -115,6 +116,7 @@ export default function OrderDetailsPage(){
                     </button>
                 </div>
             </div>
+            <Footer/>
         </>
     )
 }

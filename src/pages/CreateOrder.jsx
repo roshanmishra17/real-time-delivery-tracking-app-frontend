@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import API from "../api/axios";
 import "../CSS/CreateOrder.css"
 import NavBar from "./NavBar";
+import Footer from "./footer";
 
 export default function CreateOrder(){
     const navigate = useNavigate()
@@ -114,6 +115,7 @@ export default function CreateOrder(){
                     </form>
                 </div>
             </div>
+            <Footer/>
         </>
     );
 }

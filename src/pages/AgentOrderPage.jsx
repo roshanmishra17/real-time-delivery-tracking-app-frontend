@@ -3,6 +3,7 @@ import API from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import '../CSS/AgentOrderPage.css'
 import NavBar from "./NavBar";
+import Footer from "./footer";
 
 export default function AgentOrdersPage() {
   const [orders, setOrders] = useState([]);
@@ -104,6 +105,7 @@ export default function AgentOrdersPage() {
           )}
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

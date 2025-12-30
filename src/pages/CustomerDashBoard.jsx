@@ -3,6 +3,7 @@ import API from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import "../CSS/CustomerDashBoard.css"
 import NavBar from "./NavBar";
+import Footer from "./footer";
 
 export default function CustomerDashboard() {
   const [orders, setOrders] = useState([]);
@@ -89,6 +90,7 @@ export default function CustomerDashboard() {
           ))}
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

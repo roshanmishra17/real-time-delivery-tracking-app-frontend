@@ -20,8 +20,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/orders" element={<OrderPage />} />
-        <Route path="/test-track/:order_id" element={<TrackTestPage />} />
         <Route path="/orders/:order_id" element={<OrderDetailsPage />} />
         <Route path="/track/:order_id" element={<LiveTrackPage />} />
         <Route path="/agent/orders" element={<AgentOrdersPage />} />

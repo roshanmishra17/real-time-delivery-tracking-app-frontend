@@ -3,7 +3,7 @@ import API from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import "../CSS/login.css"
 import NavBar from "./NavBar";
-
+import Footer from "./footer";
 export default function Login() {
   const navigate = useNavigate()
   const [email, setEmail] = useState("");
@@ -88,6 +88,7 @@ export default function Login() {
           </p>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

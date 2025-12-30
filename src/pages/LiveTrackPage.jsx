@@ -5,6 +5,7 @@ import useOrderTracking from "../hooks/useWebsocket";
 import LiveMap from "../Component/LiveMap";
 import NavBar from "./NavBar";
 import '../CSS/LiveTrackPage.css'
+import Footer from "./footer";
 
 export default function LiveTrackPage() {
   const { order_id } = useParams();
@@ -126,18 +127,7 @@ export default function LiveTrackPage() {
             </div>
           )}
       </div>
+      <Footer/>
     </>
   );
 }
-
-    // <div style={{ width: "100%", height: "80vh", marginTop: 20 }}>
-    //   <h1>Tracking Order #{order_id}</h1>
-    //   <p>WebSocket: {connected ? "🟢 Connected" : "🔴 Disconnected"}</p>
-
-    //   <LiveMap
-    //     pickup={pickup}
-    //     drop={drop}
-    //     agentLocation={agentLocation}
-    //     routePath={routePath}
-    //   />
-    // </div>

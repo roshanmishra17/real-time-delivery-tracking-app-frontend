@@ -4,6 +4,7 @@ import { useNavigate,useParams } from "react-router-dom";
 import useOrderTracking from "../hooks/useWebsocket";
 import "../CSS/AgentOrderPageDetail.css"
 import NavBar from "./NavBar";
+import Footer from "./footer";
 
 export default function AgentOrderDetailsPage () {
     const {order_id} = useParams()
@@ -197,6 +198,7 @@ export default function AgentOrderDetailsPage () {
           )}
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
