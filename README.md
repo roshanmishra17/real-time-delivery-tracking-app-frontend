@@ -14,3 +14,19 @@ A React-based frontend application that enables users to track deliveries in rea
 
 ### 📱 Dashboard
 <img width="2851" height="1431" alt="Screenshot 2026-04-13 121104" src="https://github.com/user-attachments/assets/6cc9ab1e-bf24-4936-8cba-5caf685b944a" />
+
+## 🛠️ Tech Stack
+
+- React.js
+- JavaScript (ES6+)
+- WebSockets
+- Redis
+- Map API (Leaflet)
+
+## ⚙️ How It Works
+
+- The frontend connects to the backend using WebSockets.
+- Redis is used on the backend to store and stream real-time location updates.
+- When the delivery agent’s location changes, it is pushed to Redis.
+- The backend listens to Redis and sends updates to the frontend via WebSockets.
+- The frontend updates the map marker instantly.
