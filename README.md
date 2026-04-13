@@ -30,3 +30,10 @@ A React-based frontend application that enables users to track deliveries in rea
 - When the delivery agent’s location changes, it is pushed to Redis.
 - The backend listens to Redis and sends updates to the frontend via WebSockets.
 - The frontend updates the map marker instantly.
+
+## ⚡ Role of Redis
+
+- Used as an in-memory data store for fast location updates
+- Helps in handling real-time data efficiently
+- Reduces database load by caching frequently updated data
+- Enables smooth and scalable real-time tracking
