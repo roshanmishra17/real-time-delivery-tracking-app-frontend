@@ -37,3 +37,24 @@ A React-based frontend application that enables users to track deliveries in rea
 - Helps in handling real-time data efficiently
 - Reduces database load by caching frequently updated data
 - Enables smooth and scalable real-time tracking
+
+## ⚙️ Installation
+
+```bash
+git clone https://github.com/your-username/project-name.git
+cd project-name
+npm install
+npm run dev
+```
+
+
+---
+
+## ✅ Future Improvements
+
+```markdown
+## 📌 Future Improvements
+
+- Push notifications
+- ETA prediction
+```
