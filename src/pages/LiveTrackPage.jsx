@@ -19,6 +19,11 @@ export default function LiveTrackPage() {
   const [pickup, setPickup] = useState(null);
   const [drop, setDrop] = useState(null);
   const [routePath, setRoutePath] = useState([]);
+  const [distance, setDistance] = useState(0);
+  const [duration, setDuration] = useState(0);
+
+  const distanceKm = (distance / 1000).toFixed(2);
+  const durationMin = (duration / 60).toFixed(1);
 
   useEffect(() => {
     async function load() {
@@ -44,8 +49,11 @@ export default function LiveTrackPage() {
         setPickup(pickupData);
         setDrop(dropData);
 
-        const route = await fetchRoute(pickupData, dropData);
-        setRoutePath(route);
+        const routeData = await fetchRoute(pickupData, dropData);
+
+        setRoutePath(routeData.path);
+        setDistance(routeData.distance);
+        setDuration(routeData.duration);
 
       } catch (err) {
         console.error("Failed to load order", err);
@@ -95,6 +103,20 @@ export default function LiveTrackPage() {
               agentLocation={agentLocation}
               routePath={routePath}
             />
+
+            {distance > 0 && (
+              <div className="route-info">
+                <div className="info-box">
+                  <span className="label">Distance</span>
+                  <span className="value">{distanceKm} km</span>
+                </div>
+
+                <div className="info-box">
+                  <span className="label">ETA</span>
+                  <span className="value">{durationMin} mins</span>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="info-panel">
