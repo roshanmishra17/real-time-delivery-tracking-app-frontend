@@ -14,16 +14,19 @@ export default function LiveTrackPage() {
   const role = localStorage.getItem("role")
   const[order,setOrder] = useState(null)
 
-  const { location: agentLocation, connected } = useOrderTracking(order_id, token);
+  const { location: agentLocation, connected, status } = useOrderTracking(order_id, token);
 
   const [pickup, setPickup] = useState(null);
   const [drop, setDrop] = useState(null);
   const [routePath, setRoutePath] = useState([]);
   const [distance, setDistance] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [showDelivered, setShowDelivered] = useState(false);
 
   const distanceKm = (distance / 1000).toFixed(2);
   const durationMin = (duration / 60).toFixed(1);
+  
+  const currentStatus = status || order.status
 
   useEffect(() => {
     async function load() {
@@ -64,6 +67,15 @@ export default function LiveTrackPage() {
   }, [order_id, token]);
 
 
+    useEffect(() => {
+      if (status === "delivered") {
+        setShowDelivered(true);
+
+        setTimeout(() => {
+          setShowDelivered(false);
+        }, 10000);
+      }
+    }, [status]);
     if (!pickup || !drop) return (
       <div className="center-text-loader">
         <h2>Loading map...</h2>
@@ -83,11 +95,16 @@ export default function LiveTrackPage() {
     <>
       <NavBar/>
       <div className="track-container">
+          {showDelivered && (
+            <div className="delivery-banner">
+              🎉 Order Delivered Successfully!
+            </div>
+          )}
           <div className="track-header">
             <div>
               <h2>Order #{order.order_id}</h2>
-              <span className={`status status-${order.status}`}>
-                {order.status.replace("_", " ").toUpperCase()}
+              <span className={`status status-${currentStatus}`}>
+                {currentStatus.replace("_", " ").toUpperCase()}
               </span>
             </div>
 

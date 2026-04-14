@@ -161,6 +161,27 @@
     font-weight: bold;
     color: #00ffcc;
 }
+.delivery-banner {
+  background: linear-gradient(135deg, #00ffcc, #00cc99);
+  color: #000;
+  padding: 14px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 15px;
+  animation: slideDown 0.4s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 @media (max-width: 768px) {
   .track-header {
     flex-direction: column;
