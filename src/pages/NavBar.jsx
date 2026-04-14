@@ -7,8 +7,6 @@ export default function NavBar(){
     const[isOpen,setIsOpen] = useState(false)
     const[scrolled,setIsScrolled] = useState(false);
 
-
-
     const token = localStorage.getItem("token")
     const role = localStorage.getItem("role")
 
@@ -31,8 +29,6 @@ export default function NavBar(){
     function toggleMenu(){
         setIsOpen(!isOpen);
     }
-
-
     return (
         <header className={`navbar ${scrolled ? 'scroll':''}`}>
             <div className="navbar-logo">

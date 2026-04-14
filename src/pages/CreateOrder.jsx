@@ -4,6 +4,7 @@ import API from "../api/axios";
 import "../CSS/CreateOrder.css"
 import NavBar from "./NavBar";
 import Footer from "./footer";
+import MapSelector from "./MapSelector";
 
 export default function CreateOrder(){
     const navigate = useNavigate()
@@ -19,15 +20,37 @@ export default function CreateOrder(){
         drop_add : "",
     })
 
-    function handleChange(e) {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        });
+    const [selecting,setSelecting] = useState("pickup")
+    const [loading,setLoading] = useState(false)
+
+    async function getAddress(lat, lng) {
+        try {
+            const res = await fetch(
+                `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`
+            );
+            const data = await res.json();
+            return data.display_name;
+        } catch (err) {
+            console.error(err);
+            return "Address not found";
+        }
     }
+
+    // function handleChange(e) {
+    //     setForm({
+    //         ...form,
+    //         [e.target.name]: e.target.value
+    //     });
+    // }
+
+    
 
     async function handleSubmit(e) {
         e.preventDefault();
+        if (!form.pickup_lat || !form.drop_lat) {
+            setError("Please select both pickup and drop locations on the map");
+            return;
+        }
         try{
             await API.post('/order/',form,{
                 headers : {Authorization : `Bearer ${token}`}
@@ -36,7 +59,8 @@ export default function CreateOrder(){
         }catch(err){
             if (err.response && err.response.data){
                 setError(err.response.data.detail || "Failed to create order");
-            }else{
+            }
+            else{
                 setError("Failed to create order. Check input values.");
             }
         }
@@ -49,67 +73,78 @@ export default function CreateOrder(){
                 <div className="create-card">
                     <h2>Create New Order</h2>
                     {error && <p className="error-msg">{error}</p>}
+                    {loading && <p>Fetching address...</p>}
                     <p className="subtitle">
                         Enter pickup and drop details to start delivery
                     </p>
 
                     <form onSubmit={handleSubmit}>
+
+                        <div className="map-buttons">
+                        <button
+                            type="button"
+                            style={{ background: selecting === "pickup" ? "green" : "" }}
+                            onClick={() => setSelecting("pickup")}
+                        >
+                            Select Pickup
+                        </button>
+                            <button
+                                type="button"
+                                style={{ background: selecting === "drop" ? "green" : "" }}
+                                onClick={() => setSelecting("drop")}
+                            >
+                                Select Drop
+                            </button>
+                        </div>
+                        <MapSelector
+                            onSelect={async (loc) => {
+                                setLoading(true);
+
+                                const address = await getAddress(loc.lat, loc.lng);
+
+                                setLoading(false);
+
+                                if (selecting === "pickup") {
+                                    setForm(prev => ({
+                                        ...prev,
+                                        pickup_lat: loc.lat,
+                                        pickup_lng: loc.lng,
+                                        pickup_add: address
+                                    }));
+                                } else {
+                                    setForm(prev => ({
+                                        ...prev,
+                                        drop_lat: loc.lat,
+                                        drop_lng: loc.lng,
+                                        drop_add: address
+                                    }));
+                                }
+                            }}
+                        />
+
                         <div className="section">
                             <h4>Pickup Details</h4>
                             <input
-                                name="pickup_add"
-                                placeholder="Pickup Address"
-                                value={form.pickup_add}
-                                onChange={handleChange}
-                                required
+                                value={form.pickup_add} 
+                                readOnly
                             />
-                            <div className="row">
-                                <input
-                                    name="pickup_lat"
-                                    placeholder="Pickup Latitude"
-                                    value={form.pickup_lat}
-                                    onChange={handleChange}
-                                    required
-                                />
-
-                                <input
-                                    name="pickup_lng"
-                                    placeholder="Pickup Longitude"
-                                    value={form.pickup_lng}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
                         </div>
 
                         <div className="section">
                             <h4>Drop Details</h4>
                             <input
-                                name="drop_add"
-                                placeholder="Drop Address"
-                                value={form.drop_add}
-                                onChange={handleChange}
-                                required
+                                value={form.drop_add}   
+                                readOnly
                             />
-                            <div className="row">
-                                <input
-                                    name="drop_lat"
-                                    placeholder="Drop Latitude"
-                                    value={form.drop_lat}
-                                    onChange={handleChange}
-                                    required
-                                />
-
-                                <input
-                                    name="drop_lng"
-                                    placeholder="Drop Longitude"
-                                    value={form.drop_lng}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
                         </div>
-                        <button type="submit" className="submit-Btn">
+                        <p>Pickup: {form.pickup_add || "Not selected"}</p>
+                        <p>Drop: {form.drop_add || "Not selected"}</p>
+                        <button 
+                            type="submit" 
+                            className="submit-Btn"
+                            disabled={!form.pickup_lat || !form.drop_lat}
+
+                        >
                             Create Order
                         </button>
                     </form>
