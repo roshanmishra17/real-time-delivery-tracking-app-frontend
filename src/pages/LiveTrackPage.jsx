@@ -6,6 +6,7 @@ import LiveMap from "../Component/LiveMap";
 import NavBar from "./NavBar";
 import '../CSS/LiveTrackPage.css'
 import Footer from "./footer";
+import { fetchRoute } from "../Component/fetchRoute";
 
 export default function LiveTrackPage() {
   const { order_id } = useParams();
@@ -21,47 +22,39 @@ export default function LiveTrackPage() {
 
   useEffect(() => {
     async function load() {
-      const res = await API.get(`/order/${order_id}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setOrder(res.data)
-      setPickup({
-        lat: res.data.pickup.lat,
-        lng: res.data.pickup.lng,
-        address: res.data.pickup.address,
-      });
+      try {
+        const res = await API.get(`/order/${order_id}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
 
-      setDrop({
-        lat: res.data.drop.lat,
-        lng: res.data.drop.lng,
-        address: res.data.drop.address,
-      });
-      fetchRoute(
-        { lat: res.data.pickup.lat, lng: res.data.pickup.lng },
-        { lat: res.data.drop.lat, lng: res.data.drop.lng }
-      );
-    }
+        setOrder(res.data);
 
-    async function fetchRoute(pickupPoint, dropPoint) {
-      const url =
-        `https://router.project-osrm.org/route/v1/driving/` +
-        `${pickupPoint.lng},${pickupPoint.lat};${dropPoint.lng},${dropPoint.lat}` +
-        `?overview=full&geometries=geojson`;
+        const pickupData = {
+          lat: res.data.pickup.lat,
+          lng: res.data.pickup.lng,
+          address: res.data.pickup.address,
+        };
 
-      const resp = await fetch(url);
-      const data = await resp.json();
+        const dropData = {
+          lat: res.data.drop.lat,
+          lng: res.data.drop.lng,
+          address: res.data.drop.address,
+        };
 
-      if (data.routes && data.routes.length > 0) {
-        const coords = data.routes[0].geometry.coordinates.map((c) => ({
-          lat: c[1],
-          lng: c[0],
-        }));
-        setRoutePath(coords);
+        setPickup(pickupData);
+        setDrop(dropData);
+
+        const route = await fetchRoute(pickupData, dropData);
+        setRoutePath(route);
+
+      } catch (err) {
+        console.error("Failed to load order", err);
       }
     }
 
     load();
   }, [order_id, token]);
+
 
     if (!pickup || !drop) return (
       <div className="center-text-loader">
