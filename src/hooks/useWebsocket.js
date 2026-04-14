@@ -5,6 +5,24 @@ export default function useOrderTracking(order_id,token){
     const [location,setLocation] = useState(null)
     const [connected,setConnected] = useState(false)
     const [status,setStatus] = useState(null)
+    useEffect(() => {
+        if (role !== "agent") return;
+        if (!wsRef.current || wsRef.current.readyState !== 1) return;
+
+        const interval = setInterval(() => {
+            navigator.geolocation.getCurrentPosition((pos) => {
+                const { latitude, longitude } = pos.coords;
+
+                wsRef.current.send(JSON.stringify({
+                    lat: latitude,
+                    lng: longitude,
+                    timestamp: Date.now()
+                }));
+            });
+        }, 2000);
+
+        return () => clearInterval(interval);
+    }, [connected]);
 
     useEffect(() => {
         if(!order_id || !token) return
