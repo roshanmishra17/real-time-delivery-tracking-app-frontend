@@ -24,6 +24,11 @@ export default function CreateOrder(){
     const[route,setRoute] = useState([])
     const [selecting,setSelecting] = useState("pickup")
     const [loading,setLoading] = useState(false)
+    const [distance, setDistance] = useState(0);
+    const [duration, setDuration] = useState(0);
+
+    const distanceKm = (distance / 1000).toFixed(2);
+    const durationMin = (duration / 60).toFixed(1);
 
     async function getAddress(lat, lng) {
         try {
@@ -67,6 +72,7 @@ export default function CreateOrder(){
             }
         }
     }
+
 
     return (
         <>
@@ -133,7 +139,9 @@ export default function CreateOrder(){
                                             lng: form.drop_lng
                                         });
 
-                                        setRoute(routeData);
+                                        setRoute(routeData.path);
+                                        setDistance(routeData.distance);
+                                        setDuration(routeData.duration);
                                     }
 
                                 } else {
@@ -155,7 +163,9 @@ export default function CreateOrder(){
                                             newDrop
                                         );
 
-                                        setRoute(route);
+                                        setRoute(routeData.path);
+                                        setDistance(routeData.distance);
+                                        setDuration(routeData.duration);
                                     }
                                 }
                             }}
@@ -178,6 +188,19 @@ export default function CreateOrder(){
                         </div>
                         <p>Pickup: {form.pickup_add || "Not selected"}</p>
                         <p>Drop: {form.drop_add || "Not selected"}</p>
+                        {distance > 0 && (
+                            <div className="route-info">
+                                <div className="info-box">
+                                    <span className="label">Distance</span>
+                                    <span className="value">{distanceKm} km</span>
+                                </div>
+
+                                <div className="info-box">
+                                    <span className="label">ETA</span>
+                                    <span className="value">{durationMin} mins</span>
+                                </div>
+                            </div>
+                        )}
                         <button 
                             type="submit" 
                             className="submit-Btn"
