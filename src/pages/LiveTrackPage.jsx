@@ -26,7 +26,7 @@ export default function LiveTrackPage() {
   const distanceKm = (distance / 1000).toFixed(2);
   const durationMin = (duration / 60).toFixed(1);
   
-  const currentStatus = status || order.status
+  const currentStatus = status || order?.status
 
   useEffect(() => {
     async function load() {
