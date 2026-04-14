@@ -5,12 +5,15 @@ export default function useOrderTracking(order_id,token){
     const [location,setLocation] = useState(null)
     const [connected,setConnected] = useState(false)
     const [status,setStatus] = useState(null)
-    useEffect(() => {
-        if (role !== "agent") return;
-        if (!wsRef.current || wsRef.current.readyState !== 1) return;
+const role = localStorage.getItem("role");
 
-        const interval = setInterval(() => {
-            navigator.geolocation.getCurrentPosition((pos) => {
+useEffect(() => {
+    if (role !== "agent") return;
+    if (!wsRef.current || wsRef.current.readyState !== 1) return;
+
+    const interval = setInterval(() => {
+        navigator.geolocation.getCurrentPosition(
+            (pos) => {
                 const { latitude, longitude } = pos.coords;
 
                 wsRef.current.send(JSON.stringify({
@@ -18,12 +21,16 @@ export default function useOrderTracking(order_id,token){
                     lng: longitude,
                     timestamp: Date.now()
                 }));
-            });
-        }, 2000);
+            },
+            (err) => {
+                console.error("Location error", err);
+            }
+        );
+    }, 2000);
 
-        return () => clearInterval(interval);
-    }, [connected]);
+    return () => clearInterval(interval); 
 
+}, [connected]);
     useEffect(() => {
         if(!order_id || !token) return
 
@@ -43,7 +50,7 @@ export default function useOrderTracking(order_id,token){
                 console.log('WS update',data)
                 if (data.type === "ping") return;
 
-                if (data.lat && data.lng) {
+                if (data.lat !== undefined && data.lng !== undefined){
                     setLocation({
                         lat: data.lat,
                         lng: data.lng,
