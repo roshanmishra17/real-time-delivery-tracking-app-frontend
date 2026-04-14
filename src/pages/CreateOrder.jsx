@@ -5,6 +5,7 @@ import "../CSS/CreateOrder.css"
 import NavBar from "./NavBar";
 import Footer from "./footer";
 import MapSelector from "./MapSelector";
+import { fetchRoute } from "../Component/fetchRoute";
 
 export default function CreateOrder(){
     const navigate = useNavigate()
@@ -20,6 +21,7 @@ export default function CreateOrder(){
         drop_add : "",
     })
 
+    const[route,setRoute] = useState([])
     const [selecting,setSelecting] = useState("pickup")
     const [loading,setLoading] = useState(false)
 
@@ -96,7 +98,18 @@ export default function CreateOrder(){
                                 Select Drop
                             </button>
                         </div>
-                        <MapSelector
+                        <MapSelector     
+                            pickup={
+                            form.pickup_lat
+                                ? { lat: form.pickup_lat, lng: form.pickup_lng }
+                                : null
+                            }
+                            drop={
+                                form.drop_lat
+                                    ? { lat: form.drop_lat, lng: form.drop_lng }
+                                    : null
+                            }
+                            route={route}
                             onSelect={async (loc) => {
                                 setLoading(true);
 
@@ -105,19 +118,45 @@ export default function CreateOrder(){
                                 setLoading(false);
 
                                 if (selecting === "pickup") {
+                                    const newPickup = { lat: loc.lat, lng: loc.lng };
+
                                     setForm(prev => ({
                                         ...prev,
                                         pickup_lat: loc.lat,
                                         pickup_lng: loc.lng,
                                         pickup_add: address
                                     }));
+
+                                    if (form.drop_lat) {
+                                        const routeData = await fetchRoute(newPickup, {
+                                            lat: form.drop_lat,
+                                            lng: form.drop_lng
+                                        });
+
+                                        setRoute(routeData);
+                                    }
+
                                 } else {
+                                    const newDrop = { lat: loc.lat, lng: loc.lng };
+
                                     setForm(prev => ({
                                         ...prev,
                                         drop_lat: loc.lat,
                                         drop_lng: loc.lng,
                                         drop_add: address
                                     }));
+
+                                    if (form.pickup_lat) {
+                                        const route = await fetchRoute(
+                                            {
+                                                lat: form.pickup_lat,
+                                                lng: form.pickup_lng
+                                            },
+                                            newDrop
+                                        );
+
+                                        setRoute(route);
+                                    }
                                 }
                             }}
                         />
