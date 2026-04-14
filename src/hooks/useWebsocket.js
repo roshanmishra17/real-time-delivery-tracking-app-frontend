@@ -4,6 +4,7 @@ export default function useOrderTracking(order_id,token){
     const wsRef = useRef(null)
     const [location,setLocation] = useState(null)
     const [connected,setConnected] = useState(false)
+    const [status,setStatus] = useState(null)
 
     useEffect(() => {
         if(!order_id || !token) return
@@ -24,12 +25,16 @@ export default function useOrderTracking(order_id,token){
                 console.log('WS update',data)
                 if (data.type === "ping") return;
 
-                if(data.lat && data.lng){
+                if (data.lat && data.lng) {
                     setLocation({
-                        lat : data.lat,
-                        lng : data.lng,
-                        timestamp : data.timestamp
-                    })
+                        lat: data.lat,
+                        lng: data.lng,
+                        timestamp: data.timestamp
+                    });
+                }
+
+                if (data.type === "ORDER_UPDATE") {
+                    setStatus(data.status);
                 }
             }catch(err){
                 console.error('WS JSON parse error',err)
@@ -43,5 +48,5 @@ export default function useOrderTracking(order_id,token){
 
         return () => ws.close()
     },[order_id,token])
-    return {location,connected}
+    return {location,connected,status}
 }
