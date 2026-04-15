@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function useOrderTracking(order_id,token){
+export default function useOrderTracking(order_id,token,drop){
     const wsRef = useRef(null)
     const [location,setLocation] = useState(null)
     const [connected,setConnected] = useState(false)
@@ -17,8 +17,8 @@ useEffect(() => {
                 const { latitude, longitude } = pos.coords;
 
                 wsRef.current.send(JSON.stringify({
-                    lat: latitude,
-                    lng: longitude,
+                    lat: drop.lat,
+                    lng: drop.lng,
                     timestamp: Date.now()
                 }));
             },
