@@ -10,6 +10,8 @@ const role = localStorage.getItem("role");
 useEffect(() => {
     if (role !== "agent") return;
     if (!wsRef.current || wsRef.current.readyState !== 1) return;
+    if (!drop || !drop.lat || !drop.lng) return;  
+
 
     const interval = setInterval(() => {
         navigator.geolocation.getCurrentPosition(
