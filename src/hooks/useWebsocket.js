@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function useOrderTracking(order_id,token,drop){
+export default function useOrderTracking(order_id,token){
     const wsRef = useRef(null)
     const [location,setLocation] = useState(null)
     const [connected,setConnected] = useState(false)
@@ -10,7 +10,6 @@ const role = localStorage.getItem("role");
 useEffect(() => {
     if (role !== "agent") return;
     if (!wsRef.current || wsRef.current.readyState !== 1) return;
-    if (!drop || !drop.lat || !drop.lng) return;  
 
 
     const interval = setInterval(() => {
@@ -19,8 +18,8 @@ useEffect(() => {
                 const { latitude, longitude } = pos.coords;
 
                 wsRef.current.send(JSON.stringify({
-                    lat: drop.lat,
-                    lng: drop.lng,
+                    lat: latitude,
+                    lng:longitude ,
                     timestamp: Date.now()
                 }));
             },
